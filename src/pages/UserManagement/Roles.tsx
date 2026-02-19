@@ -7,16 +7,21 @@ import {
 } from "../../components/ui/table";
 import { useEffect, useState } from "react";
 
-import Badges from "../UiElements/Badges";
-import BasicTableOne from "../../components/tables/BasicTables/BasicTableOne";
 import ComponentCard from "../../components/common/ComponentCard";
 import PageBreadcrumb from "../../components/common/PageBreadCrumb";
 import PageMeta from "../../components/common/PageMeta";
 import api from "../../api";
 import { toast } from "react-toastify";
 
+interface RoleData {
+  id: string;
+  display_name: string;
+  user_name: string;
+  user_roles: string;
+}
+
 export default function Roles() {
-  const [tableData, setTableData] = useState([]);
+  const [tableData, setTableData] = useState<RoleData[]>([]);
   useEffect(() => {
     async function fetchTableData() {
       try {

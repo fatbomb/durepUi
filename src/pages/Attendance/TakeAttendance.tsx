@@ -37,8 +37,8 @@ const TakeAttendance: React.FC = () => {
     const [attendanceData, setAttendanceData] = useState<AttendanceData>({});
     const [searchQuery, setSearchQuery] = useState<string>('');
 
-    const [loading, setLoading] = useState<boolean>(true);
-    const [error, setError] = useState<string>('');
+    const [_loading, setLoading] = useState<boolean>(true);
+    const [_error, setError] = useState<string>('');
     const [students, setStudents] = useState<Student[]>([]);
     const [hasAttendance, setHasAttendance] = useState<boolean>(false);
     const { id } = useParams<{ id: string }>();

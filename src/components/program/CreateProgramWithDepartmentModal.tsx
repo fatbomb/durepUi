@@ -37,7 +37,7 @@ export function CreateProgramWithDepartmentModal({
   const { departments, loading: loadingDepartments } = useDepartments(formData.institution_id || "");
   
   // Use the hook with the selected department
-  const { createProgram, loading } = usePrograms(formData.department_id || null, undefined, false);
+  const { createProgram, loading } = usePrograms(formData.department_id || null, undefined);
 
   // Close dropdowns when clicking outside
   useEffect(() => {

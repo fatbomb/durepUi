@@ -21,9 +21,7 @@ import {
   mockDepartmentEmployees,
   getUserRoles,
   getFacultiesByInstitution,
-  getDepartmentsByFaculty,
   getProgramsByDepartment,
-  getCoursesByProgram,
   getProgramCoursesByProgram,
   getStudentsByDepartment,
   getProgramEnrollmentsByStudent,
@@ -34,10 +32,7 @@ import {
   getCourseRegistrationsByStudent,
   getCourseRegistrationsBySection,
   getCourseMaterialsBySection,
-  getAttendanceBySection,
-  getAttendanceByStudent,
   getDepartmentEmployeesByDepartment,
-  getAvailableCoursesForStudent,
   generateId,
 } from "../data/mockData";
 
@@ -463,7 +458,7 @@ export class MockApiClient {
     return departments;
   }
 
-  static async getDepartmentById(institutionId: string, id: string): Promise<Department> {
+  static async getDepartmentById(_institutionId: string, id: string): Promise<Department> {
     await delay();
     const department = departments.find(d => d.id === id);
     if (!department) throw new Error("Department not found");
@@ -493,7 +488,7 @@ export class MockApiClient {
     return newDepartment;
   }
 
-  static async updateDepartment(institutionId: string, id: string, data: { name?: string; description?: string; faculty_id?: string }): Promise<Department> {
+  static async updateDepartment(_institutionId: string, id: string, data: { name?: string; description?: string; faculty_id?: string }): Promise<Department> {
     await delay();
     const index = departments.findIndex(d => d.id === id);
     if (index === -1) throw new Error("Department not found");
@@ -507,7 +502,7 @@ export class MockApiClient {
     return departments[index];
   }
 
-  static async deleteDepartment(institutionId: string, id: string): Promise<{ id: string; name: string }> {
+  static async deleteDepartment(_institutionId: string, id: string): Promise<{ id: string; name: string }> {
     await delay();
     const department = departments.find(d => d.id === id);
     if (!department) throw new Error("Department not found");

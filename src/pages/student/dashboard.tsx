@@ -1,11 +1,10 @@
-import React, { useState, useEffect } from "react";
 import PageMeta from "../../components/common/PageMeta";
 import { useAuth } from "../../context/AuthContext";
 import { GraduationCap, BookOpen, Award, TrendingUp, Calendar, Clock } from "lucide-react";
 
 export default function StudentDashboard() {
   const { user } = useAuth();
-  const [loading, setLoading] = useState(false);
+ 
 
   // Mock data - will be replaced with actual API calls
   const dashboardData = {
@@ -45,7 +44,7 @@ export default function StudentDashboard() {
         <div className="mx-auto w-full">
           {/* Welcome Section */}
           <div className="mb-8">
-            <h3 className="mb-2 font-semibold text-gray-800 text-2xl sm:text-3xl dark:text-white/90">
+            <h3 className="mb-2 font-semibold text-gray-800 dark:text-white/90 text-2xl sm:text-3xl">
               Welcome back, {dashboardData.student.name}!
             </h3>
             <p className="text-gray-600 dark:text-gray-400 text-sm">
@@ -55,50 +54,50 @@ export default function StudentDashboard() {
 
           {/* Stats Cards */}
           <div className="gap-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 mb-8">
-            <div className="bg-white dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700 p-6 rounded-lg">
-              <div className="flex items-center justify-between mb-4">
+            <div className="bg-white dark:bg-gray-800/50 p-6 border border-gray-200 dark:border-gray-700 rounded-lg">
+              <div className="flex justify-between items-center mb-4">
                 <div className="bg-blue-100 dark:bg-blue-900/30 p-3 rounded-lg">
                   <Award className="w-6 h-6 text-blue-600 dark:text-blue-400" />
                 </div>
               </div>
               <div className="text-gray-500 dark:text-gray-400 text-sm">Current GPA</div>
-              <div className="font-bold text-gray-900 text-2xl dark:text-white">
+              <div className="font-bold text-gray-900 dark:text-white text-2xl">
                 {dashboardData.gpa.toFixed(2)}
               </div>
             </div>
 
-            <div className="bg-white dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700 p-6 rounded-lg">
-              <div className="flex items-center justify-between mb-4">
+            <div className="bg-white dark:bg-gray-800/50 p-6 border border-gray-200 dark:border-gray-700 rounded-lg">
+              <div className="flex justify-between items-center mb-4">
                 <div className="bg-green-100 dark:bg-green-900/30 p-3 rounded-lg">
                   <TrendingUp className="w-6 h-6 text-green-600 dark:text-green-400" />
                 </div>
               </div>
               <div className="text-gray-500 dark:text-gray-400 text-sm">Total Credits</div>
-              <div className="font-bold text-gray-900 text-2xl dark:text-white">
+              <div className="font-bold text-gray-900 dark:text-white text-2xl">
                 {dashboardData.totalCredits}
               </div>
             </div>
 
-            <div className="bg-white dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700 p-6 rounded-lg">
-              <div className="flex items-center justify-between mb-4">
+            <div className="bg-white dark:bg-gray-800/50 p-6 border border-gray-200 dark:border-gray-700 rounded-lg">
+              <div className="flex justify-between items-center mb-4">
                 <div className="bg-purple-100 dark:bg-purple-900/30 p-3 rounded-lg">
                   <BookOpen className="w-6 h-6 text-purple-600 dark:text-purple-400" />
                 </div>
               </div>
               <div className="text-gray-500 dark:text-gray-400 text-sm">Current Courses</div>
-              <div className="font-bold text-gray-900 text-2xl dark:text-white">
+              <div className="font-bold text-gray-900 dark:text-white text-2xl">
                 {dashboardData.currentCourses}
               </div>
             </div>
 
-            <div className="bg-white dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700 p-6 rounded-lg">
-              <div className="flex items-center justify-between mb-4">
+            <div className="bg-white dark:bg-gray-800/50 p-6 border border-gray-200 dark:border-gray-700 rounded-lg">
+              <div className="flex justify-between items-center mb-4">
                 <div className="bg-orange-100 dark:bg-orange-900/30 p-3 rounded-lg">
                   <GraduationCap className="w-6 h-6 text-orange-600 dark:text-orange-400" />
                 </div>
               </div>
               <div className="text-gray-500 dark:text-gray-400 text-sm">Programs</div>
-              <div className="font-bold text-gray-900 text-2xl dark:text-white">
+              <div className="font-bold text-gray-900 dark:text-white text-2xl">
                 {dashboardData.enrolledPrograms}
               </div>
             </div>
@@ -107,7 +106,7 @@ export default function StudentDashboard() {
           {/* Content Grid */}
           <div className="gap-6 grid grid-cols-1 lg:grid-cols-2">
             {/* Today's Classes */}
-            <div className="bg-white dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700 rounded-lg p-6">
+            <div className="bg-white dark:bg-gray-800/50 p-6 border border-gray-200 dark:border-gray-700 rounded-lg">
               <div className="flex items-center gap-2 mb-4">
                 <Calendar className="w-5 h-5 text-blue-600 dark:text-blue-400" />
                 <h4 className="font-semibold text-gray-900 dark:text-white text-lg">
@@ -118,9 +117,9 @@ export default function StudentDashboard() {
                 {dashboardData.upcomingClasses.map((classItem) => (
                   <div
                     key={classItem.id}
-                    className="bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 p-4 rounded-lg"
+                    className="bg-gray-50 dark:bg-gray-800 p-4 border border-gray-200 dark:border-gray-700 rounded-lg"
                   >
-                    <div className="flex items-start justify-between gap-2 mb-2">
+                    <div className="flex justify-between items-start gap-2 mb-2">
                       <div>
                         <div className="font-medium text-gray-900 dark:text-white text-sm">
                           {classItem.course_code}
@@ -143,14 +142,14 @@ export default function StudentDashboard() {
             </div>
 
             {/* Quick Links */}
-            <div className="bg-white dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700 rounded-lg p-6">
+            <div className="bg-white dark:bg-gray-800/50 p-6 border border-gray-200 dark:border-gray-700 rounded-lg">
               <h4 className="mb-4 font-semibold text-gray-900 dark:text-white text-lg">
                 Quick Links
               </h4>
               <div className="gap-3 grid grid-cols-2">
                 <a
                   href="/student/my-courses"
-                  className="bg-blue-50 dark:bg-blue-900/20 hover:bg-blue-100 dark:hover:bg-blue-900/30 p-4 rounded-lg text-center transition-colors"
+                  className="bg-blue-50 hover:bg-blue-100 dark:bg-blue-900/20 dark:hover:bg-blue-900/30 p-4 rounded-lg text-center transition-colors"
                 >
                   <BookOpen className="mx-auto mb-2 w-8 h-8 text-blue-600 dark:text-blue-400" />
                   <div className="font-medium text-gray-900 dark:text-white text-sm">
@@ -159,7 +158,7 @@ export default function StudentDashboard() {
                 </a>
                 <a
                   href="/student/my-programs"
-                  className="bg-purple-50 dark:bg-purple-900/20 hover:bg-purple-100 dark:hover:bg-purple-900/30 p-4 rounded-lg text-center transition-colors"
+                  className="bg-purple-50 hover:bg-purple-100 dark:bg-purple-900/20 dark:hover:bg-purple-900/30 p-4 rounded-lg text-center transition-colors"
                 >
                   <GraduationCap className="mx-auto mb-2 w-8 h-8 text-purple-600 dark:text-purple-400" />
                   <div className="font-medium text-gray-900 dark:text-white text-sm">
@@ -168,7 +167,7 @@ export default function StudentDashboard() {
                 </a>
                 <a
                   href="/course-registration"
-                  className="bg-green-50 dark:bg-green-900/20 hover:bg-green-100 dark:hover:bg-green-900/30 p-4 rounded-lg text-center transition-colors"
+                  className="bg-green-50 hover:bg-green-100 dark:bg-green-900/20 dark:hover:bg-green-900/30 p-4 rounded-lg text-center transition-colors"
                 >
                   <Calendar className="mx-auto mb-2 w-8 h-8 text-green-600 dark:text-green-400" />
                   <div className="font-medium text-gray-900 dark:text-white text-sm">
@@ -177,7 +176,7 @@ export default function StudentDashboard() {
                 </a>
                 <a
                   href="/academic-terms"
-                  className="bg-orange-50 dark:bg-orange-900/20 hover:bg-orange-100 dark:hover:bg-orange-900/30 p-4 rounded-lg text-center transition-colors"
+                  className="bg-orange-50 hover:bg-orange-100 dark:bg-orange-900/20 dark:hover:bg-orange-900/30 p-4 rounded-lg text-center transition-colors"
                 >
                   <Award className="mx-auto mb-2 w-8 h-8 text-orange-600 dark:text-orange-400" />
                   <div className="font-medium text-gray-900 dark:text-white text-sm">
@@ -189,7 +188,7 @@ export default function StudentDashboard() {
           </div>
 
           {/* Progress Section */}
-          <div className="bg-white dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700 mt-6 p-6 rounded-lg">
+          <div className="bg-white dark:bg-gray-800/50 mt-6 p-6 border border-gray-200 dark:border-gray-700 rounded-lg">
             <h4 className="mb-4 font-semibold text-gray-900 dark:text-white text-lg">
               Academic Progress
             </h4>
@@ -201,14 +200,14 @@ export default function StudentDashboard() {
                     {dashboardData.totalCredits} / 120 credits
                   </span>
                 </div>
-                <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-3">
+                <div className="bg-gray-200 dark:bg-gray-700 rounded-full w-full h-3">
                   <div
-                    className="bg-blue-600 dark:bg-blue-500 h-3 rounded-full transition-all"
+                    className="bg-blue-600 dark:bg-blue-500 rounded-full h-3 transition-all"
                     style={{ width: `${(dashboardData.totalCredits / 120) * 100}%` }}
                   ></div>
                 </div>
               </div>
-              <div className="gap-4 grid grid-cols-1 sm:grid-cols-3 pt-4 border-t border-gray-200 dark:border-gray-700">
+              <div className="gap-4 grid grid-cols-1 sm:grid-cols-3 pt-4 border-gray-200 dark:border-gray-700 border-t">
                 <div>
                   <div className="text-gray-500 dark:text-gray-400 text-xs">Current Term</div>
                   <div className="font-semibold text-gray-900 dark:text-white">

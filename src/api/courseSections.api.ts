@@ -13,43 +13,38 @@ export const courseSectionsApi = {
     if (MOCK_CONFIG.USE_MOCK_DATA) {
       return MockApiClient.getCourseSections(termId, courseId);
     }
-    let url = '/course-sections';
-    const params: any = {};
+    const url = '/course-sections';
+    const params: Record<string, string> = {};
     if (termId) params.term_id = termId;
     if (courseId) params.course_id = courseId;
-    const response = await apiClient.get(url, { params });
-    return response.data;
+    return apiClient.get<CourseSection[]>(url, params);
   },
 
   getById: async (id: string): Promise<CourseSection> => {
     if (MOCK_CONFIG.USE_MOCK_DATA) {
       return MockApiClient.getCourseSection(id);
     }
-    const response = await apiClient.get(`/course-sections/${id}`);
-    return response.data;
+    return apiClient.get<CourseSection>(`/course-sections/${id}`);
   },
 
   create: async (data: CreateCourseSectionPayload): Promise<CourseSection> => {
     if (MOCK_CONFIG.USE_MOCK_DATA) {
       return MockApiClient.createCourseSection(data);
     }
-    const response = await apiClient.post('/course-sections', data);
-    return response.data;
+    return apiClient.post<CourseSection>('/course-sections', data);
   },
 
   update: async (id: string, data: UpdateCourseSectionPayload): Promise<CourseSection> => {
     if (MOCK_CONFIG.USE_MOCK_DATA) {
       return MockApiClient.updateCourseSection(id, data);
     }
-    const response = await apiClient.put(`/course-sections/${id}`, data);
-    return response.data;
+    return apiClient.put<CourseSection>(`/course-sections/${id}`, data);
   },
 
   delete: async (id: string): Promise<{ id: string }> => {
     if (MOCK_CONFIG.USE_MOCK_DATA) {
       return MockApiClient.deleteCourseSection(id);
     }
-    const response = await apiClient.delete(`/course-sections/${id}`);
-    return response.data;
+    return apiClient.delete<{ id: string }>(`/course-sections/${id}`);
   },
 };

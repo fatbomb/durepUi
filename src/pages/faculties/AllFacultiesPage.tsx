@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useState, useEffect } from "react";
 import PageMeta from "../../components/common/PageMeta";
 import { useAuth } from "../../context/AuthContext";
 import { useInstitutions } from "../../hooks/useInstitutions";
@@ -9,10 +8,9 @@ import EditFacultyModal from "../../components/faculty/EditFacultyModal";
 import DeleteFacultyModal from "../../components/faculty/DeleteFacultyModal";
 import AccessDenied from "../../components/common/AcessDenied";
 import { facultiesApi } from "../../api/faculties.api";
-import type { Faculty, Institution } from "../../types/api.types";
+import type { Faculty } from "../../types/api.types";
 
 export default function AllFacultiesPage() {
-  const navigate = useNavigate();
   const { isAdmin, isSuperAdmin } = useAuth();
   const { institutions } = useInstitutions();
   

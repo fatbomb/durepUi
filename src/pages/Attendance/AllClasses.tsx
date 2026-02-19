@@ -22,6 +22,9 @@ interface ClassItem {
     status?: "completed" | "pending" | "upcoming" | "missed";
     avgAttendance?: number;
     day?: "Today" | "Tomorrow";
+    full_course_name?: string;
+    attendance_type?: string;
+    attendance_status?: number;
 }
 
 const AllClasses: React.FC = () => {
@@ -143,7 +146,7 @@ const AllClasses: React.FC = () => {
 
     // ✅ Status style function
     const getStatusStyle = (status: ClassItem["status"]): string => {
-        const styles: Record<ClassItem["status"], string> = {
+        const styles: Record<string, string> = {
             completed: "bg-green-100 text-green-800",
             pending: "bg-yellow-100 text-yellow-800",
             upcoming: "bg-blue-100 text-blue-800",
@@ -170,7 +173,7 @@ const AllClasses: React.FC = () => {
                     headers: { Authorization: `Bearer ${token}` },
                 });
                 // Refresh the class list after deletion
-               fetchClasses();
+                setClasses(classes.filter(c => c.id !== classId));
             } catch (err) {
                 console.log('Failed to delete class:', err);
                 alert('Failed to delete class. Please try again.');
@@ -245,8 +248,8 @@ const AllClasses: React.FC = () => {
                                                         classItem.status
                                                     )}`}
                                                 >
-                                                    {classItem.status?.charAt(0).toUpperCase() +
-                                                        classItem.status?.slice(1)}
+                                                    {classItem.status ? classItem.status.charAt(0).toUpperCase() +
+                                                        classItem.status.slice(1) : ''}
                                                 </span>
                                                 <span className="text-sm text-gray-600">
                                                     Avg:{" "}

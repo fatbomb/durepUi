@@ -10,7 +10,7 @@ interface AddCourseToProgramModalProps {
   onSubmit: (courseId: string) => Promise<void>;
 }
 
-export function AddCourseToProgramModal({ isOpen, onClose, programId, availableCourses, onSubmit }: AddCourseToProgramModalProps) {
+export function AddCourseToProgramModal({ isOpen, onClose, availableCourses, onSubmit }: AddCourseToProgramModalProps) {
   const [selectedCourseId, setSelectedCourseId] = useState("");
   const [loading, setLoading] = useState(false);
 

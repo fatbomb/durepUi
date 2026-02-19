@@ -52,7 +52,7 @@ export function AddCourseToProgramBulkModal({
 
   // Fetch departments and programs based on selections
   const { departments, loading: loadingDepartments } = useDepartments(selectedInstitutionId || "");
-  const { programs, loading: loadingPrograms } = usePrograms(selectedDepartmentId || null, undefined, false);
+  const { programs, loading: loadingPrograms } = usePrograms(selectedDepartmentId || null, undefined);
   console.log(selectedDepartmentId)
   console.log(programs)
 

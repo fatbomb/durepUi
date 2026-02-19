@@ -1,6 +1,5 @@
 // import PageBreadcrumb from "../components/common/PageBreadCrumb";
 // import PageMeta from "../components/common/PageMeta";
-import React from "react";
 import PageMeta from "../../components/common/PageMeta.tsx";
 
 

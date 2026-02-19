@@ -17,39 +17,37 @@ export const departmentEmployeesApi = {
     const url = departmentId 
       ? `/departments/${departmentId}/employees`
       : '/department-employees';
-    const response = await apiClient.get(url, { params });
-    return response.data;
+    return apiClient.get<DepartmentEmployee[]>(url, params as Record<string, any>);
   },
 
   getById: async (id: string): Promise<DepartmentEmployee> => {
     if (MOCK_CONFIG.USE_MOCK_DATA) {
-      return MockApiClient.getDepartmentEmployee(id);
+      const employees = await MockApiClient.getDepartmentEmployees();
+      const employee = employees.find(e => e.id === id);
+      if (!employee) throw new Error('Employee not found');
+      return employee;
     }
-    const response = await apiClient.get(`/department-employees/${id}`);
-    return response.data;
+    return apiClient.get<DepartmentEmployee>(`/department-employees/${id}`);
   },
 
   create: async (data: CreateDepartmentEmployeePayload): Promise<DepartmentEmployee> => {
     if (MOCK_CONFIG.USE_MOCK_DATA) {
       return MockApiClient.createDepartmentEmployee(data);
     }
-    const response = await apiClient.post('/department-employees', data);
-    return response.data;
+    return apiClient.post<DepartmentEmployee>('/department-employees', data);
   },
 
   update: async (id: string, data: UpdateDepartmentEmployeePayload): Promise<DepartmentEmployee> => {
     if (MOCK_CONFIG.USE_MOCK_DATA) {
       return MockApiClient.updateDepartmentEmployee(id, data);
     }
-    const response = await apiClient.put(`/department-employees/${id}`, data);
-    return response.data;
+    return apiClient.put<DepartmentEmployee>(`/department-employees/${id}`, data);
   },
 
   delete: async (id: string): Promise<{ id: string }> => {
     if (MOCK_CONFIG.USE_MOCK_DATA) {
       return MockApiClient.deleteDepartmentEmployee(id);
     }
-    const response = await apiClient.delete(`/department-employees/${id}`);
-    return response.data;
+    return apiClient.delete<{ id: string }>(`/department-employees/${id}`);
   },
 };

@@ -1,4 +1,3 @@
-import React from "react";
 import type { User } from "../../types/api.types";
 import { Shield, Pencil, Trash2, Users } from "lucide-react";
 

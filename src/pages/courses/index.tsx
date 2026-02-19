@@ -1,5 +1,4 @@
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 import PageMeta from "../../components/common/PageMeta";
 import { useAuth } from "../../context/AuthContext";
 import { useCourses } from "../../hooks/useCourses";
@@ -12,7 +11,6 @@ import type { Course } from "../../types/api.types";
 import { Plus, Search } from "lucide-react";
 
 export default function CoursesPage() {
-  const navigate = useNavigate();
   const { isAdmin, isSuperAdmin } = useAuth();
   const { courses, loading, error, createCourse, updateCourse, deleteCourse } = useCourses();
   

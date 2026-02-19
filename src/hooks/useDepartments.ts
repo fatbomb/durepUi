@@ -10,7 +10,7 @@ import type {
 import { toast } from 'react-toastify';
 
 export const useDepartments = (
-  institutionId: string | null,
+  institutionId: string | null = null,
   params?: PaginationParams,
   autoFetch = true
 ) => {

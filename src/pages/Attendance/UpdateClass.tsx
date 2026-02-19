@@ -1,4 +1,4 @@
-import React, { useState, FormEvent, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import {useNavigate, useParams} from 'react-router-dom';
 import PageMeta from '../../components/common/PageMeta.tsx';
 import api from "../../api";
@@ -12,7 +12,7 @@ interface Course {
 
 const CreateClass: React.FC = () => {
     const navigate = useNavigate();
-    const [courseSelect, setCourseSelect] = useState<number>('');
+    const [courseSelect, setCourseSelect] = useState<number | ''>('');
     const [topics, setTopics] = useState<string>('');
     const [date, setDate] = useState<string>('');
     const [startTime, setStartTime] = useState<string>('');
@@ -20,7 +20,7 @@ const CreateClass: React.FC = () => {
     const [room, setRoom] = useState<string>('');
     const [attendanceType, setAttendanceType] = useState<string>('');
     const [isRecurring, setIsRecurring] = useState<boolean>(false);
-    const [selectedDays, setSelectedDays] = useState<number[]>([]);
+    const [selectedDays, setSelectedDays] = useState<string[]>([]);
     const [startDate, setStartDate] = useState<string>('');
     const [endDate, setEndDate] = useState<string>('');
     const [courses, setCourses] = useState<Course[]>([]);
@@ -89,15 +89,15 @@ const CreateClass: React.FC = () => {
 
 
 
-    const toggleDay = (index: number): void => {
-        if (selectedDays.includes(index)) {
-            setSelectedDays(selectedDays.filter((d) => d !== index));
+    const toggleDay = (dayKey: string): void => {
+        if (selectedDays.includes(dayKey)) {
+            setSelectedDays(selectedDays.filter((d) => d !== dayKey));
         } else {
-            setSelectedDays([...selectedDays, index]);
+            setSelectedDays([...selectedDays, dayKey]);
         }
     };
 
-    const handleSubmit = async (e: FormEvent<HTMLFormElement>): Promise<void> => {
+    const handleSubmit = async (e: React.FormEvent | React.MouseEvent): Promise<void> => {
         e.preventDefault();
         if (!courseSelect) {
             alert('Please select a course and section');
@@ -111,13 +111,11 @@ const CreateClass: React.FC = () => {
 
         try {
 
-            var class_start_date,class_end_date;
+            let class_start_date: string;
             if(isRecurring){
                 class_start_date = startDate;
-                class_end_date = endDate;
             }else{
                 class_start_date = date;
-                class_end_date = date;
             }
             const classData = {
                 class_id: Number(id),
@@ -209,11 +207,7 @@ const CreateClass: React.FC = () => {
 
                                     onChange={(e) => {
                                         const courseId = e.target.value;
-                                        const selectedOption = e.target.options[e.target.selectedIndex];
-                                        const selectedCourseSecId = selectedOption.dataset.courseSectionId;
-
-                                        setCourseSelect(courseId);        // → course_section_id
-                                        setCourseSectionId(selectedCourseSecId || ''); // → course_id
+                                        setCourseSelect(courseId ? Number(courseId) : '');
                                     }}
 
                                     required

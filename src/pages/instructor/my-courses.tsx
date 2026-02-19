@@ -1,13 +1,11 @@
-import React, { useState, useEffect } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import PageMeta from "../../components/common/PageMeta";
-import { useAuth } from "../../context/AuthContext";
 import { BookOpen, Users, FileText, Calendar, Eye, TrendingUp } from "lucide-react";
 
 export default function InstructorCoursesPage() {
   const navigate = useNavigate();
-  const { user } = useAuth();
-  const [loading, setLoading] = useState(false);
+  const [loading] = useState(false);
 
   // Mock data - will be replaced with actual API calls based on instructor ID
   const instructorCourses = [
@@ -80,7 +78,7 @@ export default function InstructorCoursesPage() {
         <div className="mx-auto w-full">
           {/* Header */}
           <div className="mb-8">
-            <h3 className="mb-2 font-semibold text-gray-800 text-2xl sm:text-3xl dark:text-white/90">
+            <h3 className="mb-2 font-semibold text-gray-800 dark:text-white/90 text-2xl sm:text-3xl">
               My Teaching Courses
             </h3>
             <p className="text-gray-600 dark:text-gray-400 text-sm">
@@ -90,50 +88,50 @@ export default function InstructorCoursesPage() {
 
           {/* Summary Stats */}
           <div className="gap-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 mb-8">
-            <div className="bg-white dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700 p-6 rounded-lg">
-              <div className="flex items-center justify-between mb-4">
+            <div className="bg-white dark:bg-gray-800/50 p-6 border border-gray-200 dark:border-gray-700 rounded-lg">
+              <div className="flex justify-between items-center mb-4">
                 <div className="bg-blue-100 dark:bg-blue-900/30 p-3 rounded-lg">
                   <BookOpen className="w-6 h-6 text-blue-600 dark:text-blue-400" />
                 </div>
               </div>
               <div className="text-gray-500 dark:text-gray-400 text-sm">Active Courses</div>
-              <div className="font-bold text-gray-900 text-2xl dark:text-white">
+              <div className="font-bold text-gray-900 dark:text-white text-2xl">
                 {instructorCourses.length}
               </div>
             </div>
 
-            <div className="bg-white dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700 p-6 rounded-lg">
-              <div className="flex items-center justify-between mb-4">
+            <div className="bg-white dark:bg-gray-800/50 p-6 border border-gray-200 dark:border-gray-700 rounded-lg">
+              <div className="flex justify-between items-center mb-4">
                 <div className="bg-green-100 dark:bg-green-900/30 p-3 rounded-lg">
                   <Users className="w-6 h-6 text-green-600 dark:text-green-400" />
                 </div>
               </div>
               <div className="text-gray-500 dark:text-gray-400 text-sm">Total Students</div>
-              <div className="font-bold text-gray-900 text-2xl dark:text-white">
+              <div className="font-bold text-gray-900 dark:text-white text-2xl">
                 {instructorCourses.reduce((sum, course) => sum + course.enrolled_students, 0)}
               </div>
             </div>
 
-            <div className="bg-white dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700 p-6 rounded-lg">
-              <div className="flex items-center justify-between mb-4">
+            <div className="bg-white dark:bg-gray-800/50 p-6 border border-gray-200 dark:border-gray-700 rounded-lg">
+              <div className="flex justify-between items-center mb-4">
                 <div className="bg-purple-100 dark:bg-purple-900/30 p-3 rounded-lg">
                   <FileText className="w-6 h-6 text-purple-600 dark:text-purple-400" />
                 </div>
               </div>
               <div className="text-gray-500 dark:text-gray-400 text-sm">Materials Uploaded</div>
-              <div className="font-bold text-gray-900 text-2xl dark:text-white">
+              <div className="font-bold text-gray-900 dark:text-white text-2xl">
                 {instructorCourses.reduce((sum, course) => sum + course.materials_count, 0)}
               </div>
             </div>
 
-            <div className="bg-white dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700 p-6 rounded-lg">
-              <div className="flex items-center justify-between mb-4">
+            <div className="bg-white dark:bg-gray-800/50 p-6 border border-gray-200 dark:border-gray-700 rounded-lg">
+              <div className="flex justify-between items-center mb-4">
                 <div className="bg-orange-100 dark:bg-orange-900/30 p-3 rounded-lg">
                   <TrendingUp className="w-6 h-6 text-orange-600 dark:text-orange-400" />
                 </div>
               </div>
               <div className="text-gray-500 dark:text-gray-400 text-sm">Avg Attendance</div>
-              <div className="font-bold text-gray-900 text-2xl dark:text-white">
+              <div className="font-bold text-gray-900 dark:text-white text-2xl">
                 {Math.round(instructorCourses.reduce((sum, course) => sum + course.avg_attendance, 0) / instructorCourses.length)}%
               </div>
             </div>
@@ -149,9 +147,9 @@ export default function InstructorCoursesPage() {
               {instructorCourses.map((course) => (
                 <div
                   key={course.id}
-                  className="bg-white dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700 rounded-lg p-6 hover:border-blue-500 dark:hover:border-blue-500 transition-colors"
+                  className="bg-white dark:bg-gray-800/50 p-6 border border-gray-200 hover:border-blue-500 dark:border-gray-700 dark:hover:border-blue-500 rounded-lg transition-colors"
                 >
-                  <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-4">
+                  <div className="flex lg:flex-row flex-col lg:justify-between lg:items-start gap-4">
                     {/* Course Info */}
                     <div className="flex-1">
                       <div className="flex items-start gap-3 mb-3">
@@ -168,10 +166,10 @@ export default function InstructorCoursesPage() {
                               Section {course.section_number}
                             </span>
                           </div>
-                          <h4 className="font-semibold text-gray-900 dark:text-white text-lg mb-1">
+                          <h4 className="mb-1 font-semibold text-gray-900 dark:text-white text-lg">
                             {course.course_name}
                           </h4>
-                          <div className="flex flex-wrap items-center gap-2 text-sm text-gray-600 dark:text-gray-400">
+                          <div className="flex flex-wrap items-center gap-2 text-gray-600 dark:text-gray-400 text-sm">
                             <span className="inline-flex items-center bg-blue-100 dark:bg-blue-900/30 px-2.5 py-0.5 rounded-full font-medium text-blue-800 dark:text-blue-300 text-xs">
                               {course.term}
                             </span>
@@ -231,7 +229,7 @@ export default function InstructorCoursesPage() {
                     <div className="flex lg:flex-col gap-2">
                       <button
                         onClick={() => handleViewClassroom(course.id)}
-                        className="flex items-center justify-center gap-2 bg-blue-600 hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600 px-4 py-2 rounded-lg font-medium text-white text-sm transition-colors flex-1 lg:flex-initial"
+                        className="flex lg:flex-initial flex-1 justify-center items-center gap-2 bg-blue-600 hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600 px-4 py-2 rounded-lg font-medium text-white text-sm transition-colors"
                       >
                         <Eye className="w-4 h-4" />
                         <span>View Classroom</span>

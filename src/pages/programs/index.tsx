@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import PageMeta from "../../components/common/PageMeta";
 import { useAuth } from "../../context/AuthContext";
@@ -54,15 +54,15 @@ export default function ProgramsPage() {
           <div className="flex flex-col gap-4 mb-6">
             <button
               onClick={handleBackToDepartments}
-              className="flex items-center gap-2 text-gray-600 hover:text-gray-900 dark:hover:text-white dark:text-gray-400 text-sm transition-colors self-start"
+              className="flex items-center self-start gap-2 text-gray-600 hover:text-gray-900 dark:hover:text-white dark:text-gray-400 text-sm transition-colors"
             >
               <ArrowLeft className="w-4 h-4" />
               <span>Back to Departments</span>
             </button>
             
-            <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4">
+            <div className="flex sm:flex-row flex-col sm:justify-between sm:items-center gap-4">
               <div>
-                <h3 className="mb-2 font-semibold text-gray-800 text-xl sm:text-2xl dark:text-white/90">
+                <h3 className="mb-2 font-semibold text-gray-800 dark:text-white/90 text-xl sm:text-2xl">
                   Program Management
                 </h3>
                 <p className="text-gray-600 dark:text-gray-400 text-sm">
@@ -71,7 +71,7 @@ export default function ProgramsPage() {
               </div>
               <button
                 onClick={handleCreateProgram}
-                className="flex items-center justify-center gap-2 bg-blue-600 hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600 px-4 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 font-medium text-white text-sm transition-colors w-full sm:w-auto"
+                className="flex justify-center items-center gap-2 bg-blue-600 hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600 px-4 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 w-full sm:w-auto font-medium text-white text-sm transition-colors"
               >
                 <Plus className="w-4 h-4" />
                 <span>Add Program</span>

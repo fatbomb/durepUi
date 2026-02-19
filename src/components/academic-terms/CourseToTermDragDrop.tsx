@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import type { Course, AcademicTerm, CourseSection } from "../../types/api.types";
-import { GripVertical, Plus, X, CheckCircle, RefreshCw } from "lucide-react";
+import { GripVertical, Plus, X, CheckCircle } from "lucide-react";
 
 interface CourseToTermDragDropProps {
   availableCourses: Course[];

@@ -2,7 +2,7 @@
 
 import { createContext, useContext, useState, useEffect, ReactNode } from "react";
 import { authApi } from "../api/auth.api";
-import type { User, LoginCredentials, SignupCredentials, UserRole } from "../types/api.types";
+import type { User, LoginCredentials, SignupCredentials } from "../types/api.types";
 import { rolesApi } from "../api";
 
 interface AuthContextType {

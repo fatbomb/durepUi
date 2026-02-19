@@ -1,4 +1,3 @@
-import React from "react";
 import type { Institution } from "../../types/api.types";
 import { Building2, Pencil, Trash2 } from "lucide-react";
 

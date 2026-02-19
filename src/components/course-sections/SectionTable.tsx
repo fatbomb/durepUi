@@ -1,4 +1,3 @@
-import React from "react";
 import type { CourseSection } from "../../types/api.types";
 import { Eye, Edit, Trash2, BookOpen, Users, UserPlus } from "lucide-react";
 

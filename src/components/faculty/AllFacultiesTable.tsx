@@ -1,4 +1,3 @@
-import React from "react";
 import type { Faculty } from "../../types/api.types";
 import { useNavigate } from "react-router";
 import { Building2, Pencil, Trash2 } from "lucide-react";

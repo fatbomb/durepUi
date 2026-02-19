@@ -1,12 +1,12 @@
-import React, { useState, useEffect } from "react";
+import  { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import PageMeta from "../../components/common/PageMeta";
 import { useAuth } from "../../context/AuthContext";
 import { studentsApi } from "../../api/students.api";
 import { useDepartments } from "../../hooks/useDepartments";
 import AccessDenied from "../../components/common/AcessDenied";
-import type { Student, Department } from "../../types/api.types";
-import { Plus, Search, Users } from "lucide-react";
+import type { Student } from "../../types/api.types";
+import { Plus, Search} from "lucide-react";
 import StudentTable from "../../components/students/StudentTable";
 import CreateStudentModal from "../../components/students/CreateStudentModal";
 
@@ -112,9 +112,9 @@ export default function StudentsPage() {
 
       <div className="bg-white dark:bg-white/[0.03] px-4 sm:px-5 xl:px-10 py-5 sm:py-7 xl:py-12 border border-gray-200 dark:border-gray-800 rounded-2xl min-h-screen">
         <div className="mx-auto w-full">
-          <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4 mb-6">
+          <div className="flex sm:flex-row flex-col sm:justify-between sm:items-center gap-4 mb-6">
             <div>
-              <h3 className="mb-2 font-semibold text-gray-800 text-xl sm:text-2xl dark:text-white/90">
+              <h3 className="mb-2 font-semibold text-gray-800 dark:text-white/90 text-xl sm:text-2xl">
                 Student Management
               </h3>
               <p className="text-gray-600 dark:text-gray-400 text-sm">
@@ -123,7 +123,7 @@ export default function StudentsPage() {
             </div>
             <button
               onClick={() => setIsCreateModalOpen(true)}
-              className="flex items-center justify-center gap-2 bg-blue-600 hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600 px-4 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 font-medium text-white text-sm transition-colors w-full sm:w-auto"
+              className="flex justify-center items-center gap-2 bg-blue-600 hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600 px-4 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 w-full sm:w-auto font-medium text-white text-sm transition-colors"
             >
               <Plus className="w-4 h-4" />
               <span>Register Student</span>

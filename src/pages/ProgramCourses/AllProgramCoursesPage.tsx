@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useState, useEffect } from "react";
 import PageMeta from "../../components/common/PageMeta";
 import { useAuth } from "../../context/AuthContext";
 import { useInstitutions } from "../../hooks/useInstitutions";
@@ -10,10 +9,9 @@ import { AddCourseToProgramBulkModal } from "../../components/programCourse/AddC
 import AccessDenied from "../../components/common/AcessDenied";
 import { departmentsApi } from "../../api/departments.api";
 import { programsApi } from "../../api/programs.api";
-import type { ProgramCourse, Department, Program } from "../../types/api.types";
+import type { Department, Program } from "../../types/api.types";
 
 export default function AllProgramCoursesPage() {
-  const navigate = useNavigate();
   const { isAdmin, isSuperAdmin } = useAuth();
   const { institutions } = useInstitutions();
   const { programCourses, createProgramCourse, deleteProgramCourse } = useProgramCourses();
@@ -30,7 +28,7 @@ export default function AllProgramCoursesPage() {
   const [searchQuery, setSearchQuery] = useState("");
   
   const [isAddModalOpen, setIsAddModalOpen] = useState(false);
-  const [editingProgram, setEditingProgram] = useState<Program | null>(null);
+  const [_editingProgram, setEditingProgram] = useState<Program | null>(null);
 
   // Access control
   if (!isAdmin && !isSuperAdmin) {

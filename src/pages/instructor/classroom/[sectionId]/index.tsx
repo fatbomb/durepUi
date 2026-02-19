@@ -1,10 +1,8 @@
-import React, { useState } from "react";
-import { useParams } from "react-router-dom";
+import { useState } from "react";
 import PageMeta from "../../../../components/common/PageMeta";
 import { BookOpen, Users, FileText, Calendar, TrendingUp, Upload } from "lucide-react";
 
 export default function ClassroomPage() {
-  const { sectionId } = useParams<{ sectionId: string }>();
   const [activeTab, setActiveTab] = useState<'students' | 'materials' | 'attendance' | 'grades'>('students');
 
   // Mock data for the classroom
@@ -93,7 +91,7 @@ export default function ClassroomPage() {
       <div className="bg-white dark:bg-white/[0.03] px-4 sm:px-5 xl:px-10 py-5 sm:py-7 xl:py-12 border border-gray-200 dark:border-gray-800 rounded-2xl min-h-screen">
         <div className="mx-auto w-full">
           {/* Header */}
-          <div className="bg-gradient-to-r from-blue-50 to-purple-50 dark:from-blue-900/20 dark:to-purple-900/20 p-6 rounded-lg mb-6 border border-gray-200 dark:border-gray-700">
+          <div className="bg-gradient-to-r from-blue-50 dark:from-blue-900/20 to-purple-50 dark:to-purple-900/20 mb-6 p-6 border border-gray-200 dark:border-gray-700 rounded-lg">
             <div className="flex items-start gap-3">
               <div className="bg-blue-100 dark:bg-blue-900/30 p-3 rounded-lg">
                 <BookOpen className="w-6 h-6 text-blue-600 dark:text-blue-400" />
@@ -108,10 +106,10 @@ export default function ClassroomPage() {
                     Section {classroomData.section_number}
                   </span>
                 </div>
-                <h3 className="font-semibold text-gray-900 dark:text-white text-xl mb-2">
+                <h3 className="mb-2 font-semibold text-gray-900 dark:text-white text-xl">
                   {classroomData.course_name}
                 </h3>
-                <div className="flex flex-wrap items-center gap-2 text-sm text-gray-600 dark:text-gray-400">
+                <div className="flex flex-wrap items-center gap-2 text-gray-600 dark:text-gray-400 text-sm">
                   <span className="inline-flex items-center bg-blue-100 dark:bg-blue-900/30 px-2.5 py-0.5 rounded-full font-medium text-blue-800 dark:text-blue-300 text-xs">
                     {classroomData.term}
                   </span>
@@ -127,7 +125,7 @@ export default function ClassroomPage() {
           </div>
 
           {/* Tabs */}
-          <div className="border-b border-gray-200 dark:border-gray-700 mb-6">
+          <div className="mb-6 border-gray-200 dark:border-gray-700 border-b">
             <div className="flex gap-1 overflow-x-auto">
               {tabs.map((tab) => {
                 const Icon = tab.icon;
@@ -212,7 +210,7 @@ export default function ClassroomPage() {
                             </div>
                           </td>
                           <td className="px-6 py-4 whitespace-nowrap">
-                            <span className="inline-flex items-center px-2.5 py-0.5 rounded-full font-medium text-xs bg-blue-100 dark:bg-blue-900/30 text-blue-800 dark:text-blue-300">
+                            <span className="inline-flex items-center bg-blue-100 dark:bg-blue-900/30 px-2.5 py-0.5 rounded-full font-medium text-blue-800 dark:text-blue-300 text-xs">
                               {student.grade}
                             </span>
                           </td>
@@ -227,18 +225,18 @@ export default function ClassroomPage() {
                   {students.map((student) => (
                     <div
                       key={student.id}
-                      className="bg-white dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700 rounded-lg p-4"
+                      className="bg-white dark:bg-gray-800/50 p-4 border border-gray-200 dark:border-gray-700 rounded-lg"
                     >
-                      <div className="font-mono text-blue-600 dark:text-blue-400 text-xs mb-1">
+                      <div className="mb-1 font-mono text-blue-600 dark:text-blue-400 text-xs">
                         {student.student_id}
                       </div>
-                      <h5 className="font-semibold text-gray-900 dark:text-white mb-1">
+                      <h5 className="mb-1 font-semibold text-gray-900 dark:text-white">
                         {student.name}
                       </h5>
-                      <p className="text-gray-600 dark:text-gray-400 text-sm mb-3">
+                      <p className="mb-3 text-gray-600 dark:text-gray-400 text-sm">
                         {student.email}
                       </p>
-                      <div className="flex items-center justify-between">
+                      <div className="flex justify-between items-center">
                         <div>
                           <span className="text-gray-500 dark:text-gray-400 text-xs">Attendance: </span>
                           <span className={`font-medium text-sm ${
@@ -251,7 +249,7 @@ export default function ClassroomPage() {
                             {student.attendance_rate}%
                           </span>
                         </div>
-                        <span className="inline-flex items-center px-2.5 py-0.5 rounded-full font-medium text-xs bg-blue-100 dark:bg-blue-900/30 text-blue-800 dark:text-blue-300">
+                        <span className="inline-flex items-center bg-blue-100 dark:bg-blue-900/30 px-2.5 py-0.5 rounded-full font-medium text-blue-800 dark:text-blue-300 text-xs">
                           Grade: {student.grade}
                         </span>
                       </div>
@@ -264,11 +262,11 @@ export default function ClassroomPage() {
             {/* Materials Tab */}
             {activeTab === 'materials' && (
               <div>
-                <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6">
+                <div className="flex sm:flex-row flex-col justify-between items-start sm:items-center gap-4 mb-6">
                   <h4 className="font-semibold text-gray-900 dark:text-white text-lg">
                     Course Materials ({materials.length})
                   </h4>
-                  <button className="flex items-center gap-2 bg-blue-600 hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600 px-4 py-2 rounded-lg font-medium text-white text-sm transition-colors w-full sm:w-auto">
+                  <button className="flex items-center gap-2 bg-blue-600 hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600 px-4 py-2 rounded-lg w-full sm:w-auto font-medium text-white text-sm transition-colors">
                     <Upload className="w-4 h-4" />
                     <span>Upload Material</span>
                   </button>
@@ -278,18 +276,18 @@ export default function ClassroomPage() {
                   {materials.map((material) => (
                     <div
                       key={material.id}
-                      className="bg-white dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700 p-4 rounded-lg hover:border-blue-500 dark:hover:border-blue-500 transition-colors"
+                      className="bg-white dark:bg-gray-800/50 p-4 border border-gray-200 hover:border-blue-500 dark:border-gray-700 dark:hover:border-blue-500 rounded-lg transition-colors"
                     >
-                      <div className="flex items-start justify-between gap-4">
-                        <div className="flex items-start gap-3 flex-1">
+                      <div className="flex justify-between items-start gap-4">
+                        <div className="flex flex-1 items-start gap-3">
                           <div className="bg-blue-100 dark:bg-blue-900/30 p-2 rounded">
                             <FileText className="w-5 h-5 text-blue-600 dark:text-blue-400" />
                           </div>
                           <div className="flex-1">
-                            <h5 className="font-medium text-gray-900 dark:text-white mb-1">
+                            <h5 className="mb-1 font-medium text-gray-900 dark:text-white">
                               {material.title}
                             </h5>
-                            <div className="flex flex-wrap items-center gap-2 text-xs text-gray-500 dark:text-gray-400">
+                            <div className="flex flex-wrap items-center gap-2 text-gray-500 dark:text-gray-400 text-xs">
                               <span>{material.type}</span>
                               <span>•</span>
                               <span>{material.size}</span>
@@ -310,11 +308,11 @@ export default function ClassroomPage() {
             {/* Attendance Tab */}
             {activeTab === 'attendance' && (
               <div>
-                <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6">
+                <div className="flex sm:flex-row flex-col justify-between items-start sm:items-center gap-4 mb-6">
                   <h4 className="font-semibold text-gray-900 dark:text-white text-lg">
                     Attendance Records
                   </h4>
-                  <button className="bg-blue-600 hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600 px-4 py-2 rounded-lg font-medium text-white text-sm transition-colors w-full sm:w-auto">
+                  <button className="bg-blue-600 hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600 px-4 py-2 rounded-lg w-full sm:w-auto font-medium text-white text-sm transition-colors">
                     Mark Attendance
                   </button>
                 </div>
@@ -323,11 +321,11 @@ export default function ClassroomPage() {
                   {attendanceDates.map((record, index) => (
                     <div
                       key={index}
-                      className="bg-white dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700 p-4 rounded-lg"
+                      className="bg-white dark:bg-gray-800/50 p-4 border border-gray-200 dark:border-gray-700 rounded-lg"
                     >
-                      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                      <div className="flex sm:flex-row flex-col justify-between sm:items-center gap-4">
                         <div>
-                          <div className="font-medium text-gray-900 dark:text-white mb-1">
+                          <div className="mb-1 font-medium text-gray-900 dark:text-white">
                             {new Date(record.date).toLocaleDateString('en-US', { 
                               weekday: 'long', 
                               year: 'numeric', 
@@ -338,19 +336,19 @@ export default function ClassroomPage() {
                         </div>
                         <div className="flex items-center gap-4">
                           <div className="text-center">
-                            <div className="text-green-600 dark:text-green-400 font-semibold">
+                            <div className="font-semibold text-green-600 dark:text-green-400">
                               {record.present}
                             </div>
                             <div className="text-gray-500 dark:text-gray-400 text-xs">Present</div>
                           </div>
                           <div className="text-center">
-                            <div className="text-red-600 dark:text-red-400 font-semibold">
+                            <div className="font-semibold text-red-600 dark:text-red-400">
                               {record.absent}
                             </div>
                             <div className="text-gray-500 dark:text-gray-400 text-xs">Absent</div>
                           </div>
                           <div className="text-center">
-                            <div className="text-yellow-600 dark:text-yellow-400 font-semibold">
+                            <div className="font-semibold text-yellow-600 dark:text-yellow-400">
                               {record.late}
                             </div>
                             <div className="text-gray-500 dark:text-gray-400 text-xs">Late</div>
@@ -366,16 +364,16 @@ export default function ClassroomPage() {
             {/* Grades Tab */}
             {activeTab === 'grades' && (
               <div>
-                <h4 className="font-semibold text-gray-900 dark:text-white text-lg mb-6">
+                <h4 className="mb-6 font-semibold text-gray-900 dark:text-white text-lg">
                   Student Grades
                 </h4>
 
-                <div className="bg-white dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700 rounded-lg p-6">
+                <div className="bg-white dark:bg-gray-800/50 p-6 border border-gray-200 dark:border-gray-700 rounded-lg">
                   <div className="space-y-4">
                     {students.map((student) => (
                       <div
                         key={student.id}
-                        className="flex items-center justify-between p-4 bg-gray-50 dark:bg-gray-800 rounded-lg"
+                        className="flex justify-between items-center bg-gray-50 dark:bg-gray-800 p-4 rounded-lg"
                       >
                         <div className="flex-1">
                           <div className="font-medium text-gray-900 dark:text-white">

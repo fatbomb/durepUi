@@ -1,6 +1,5 @@
-import React from "react";
 import type { Student } from "../../types/api.types";
-import { Eye, Trash2, Users, GraduationCap } from "lucide-react";
+import { Eye, Trash2, GraduationCap } from "lucide-react";
 
 interface StudentTableProps {
   students: Student[];

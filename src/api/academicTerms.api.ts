@@ -13,39 +13,34 @@ export const academicTermsApi = {
     if (MOCK_CONFIG.USE_MOCK_DATA) {
       return MockApiClient.getAcademicTerms();
     }
-    const response = await apiClient.get('/academic-terms');
-    return response.data;
+    return apiClient.get<AcademicTerm[]>('/academic-terms');
   },
 
   getById: async (id: string): Promise<AcademicTerm> => {
     if (MOCK_CONFIG.USE_MOCK_DATA) {
       return MockApiClient.getAcademicTerm(id);
     }
-    const response = await apiClient.get(`/academic-terms/${id}`);
-    return response.data;
+    return apiClient.get<AcademicTerm>(`/academic-terms/${id}`);
   },
 
   create: async (data: CreateAcademicTermPayload): Promise<AcademicTerm> => {
     if (MOCK_CONFIG.USE_MOCK_DATA) {
       return MockApiClient.createAcademicTerm(data);
     }
-    const response = await apiClient.post('/academic-terms', data);
-    return response.data;
+    return apiClient.post<AcademicTerm>('/academic-terms', data);
   },
 
   update: async (id: string, data: UpdateAcademicTermPayload): Promise<AcademicTerm> => {
     if (MOCK_CONFIG.USE_MOCK_DATA) {
       return MockApiClient.updateAcademicTerm(id, data);
     }
-    const response = await apiClient.put(`/academic-terms/${id}`, data);
-    return response.data;
+    return apiClient.put<AcademicTerm>(`/academic-terms/${id}`, data);
   },
 
   delete: async (id: string): Promise<{ id: string; name: string }> => {
     if (MOCK_CONFIG.USE_MOCK_DATA) {
       return MockApiClient.deleteAcademicTerm(id);
     }
-    const response = await apiClient.delete(`/academic-terms/${id}`);
-    return response.data;
+    return apiClient.delete<{ id: string; name: string }>(`/academic-terms/${id}`);
   },
 };

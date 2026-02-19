@@ -1,9 +1,7 @@
-import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useState, useEffect } from "react";
 import PageMeta from "../../components/common/PageMeta";
 import { useAuth } from "../../context/AuthContext";
 import { useInstitutions } from "../../hooks/useInstitutions";
-import { useDepartments } from "../../hooks/useDepartments";
 import { AllProgramsTable } from "../../components/program/AllProgramTable";
 import { CreateProgramWithDepartmentModal } from "../../components/program/CreateProgramWithDepartmentModal";
 import { EditProgramModal } from "../../components/program/EditProgramModal";
@@ -14,7 +12,6 @@ import { programsApi } from "../../api/programs.api";
 import type { Program, Department } from "../../types/api.types";
 
 export default function AllProgramsPage() {
-  const navigate = useNavigate();
   const { isAdmin, isSuperAdmin } = useAuth();
   const { institutions } = useInstitutions();
   

@@ -1,12 +1,12 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import PageMeta from "../../components/common/PageMeta";
 import { useAuth } from "../../context/AuthContext";
 import { courseSectionsApi } from "../../api/courseSections.api";
 import { academicTermsApi } from "../../api/academicTerms.api";
 import { instructorAssignmentsApi } from "../../api/instructorAssignments.api";
 import AccessDenied from "../../components/common/AcessDenied";
-import type { CourseSection, AcademicTerm, Course } from "../../types/api.types";
-import { Plus, Search, UserPlus } from "lucide-react";
+import type { CourseSection, AcademicTerm } from "../../types/api.types";
+import { Plus, Search } from "lucide-react";
 import SectionTable from "../../components/course-sections/SectionTable";
 import CreateSectionModal from "../../components/course-sections/CreateSectionModal";
 import AssignInstructorModal from "../../components/course-sections/AssignInstructorModal";

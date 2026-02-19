@@ -1,5 +1,3 @@
-import GridShape from "../../components/common/GridShape";
-import { Link } from "react-router";
 import React from "react";
 import ThemeTogglerTwo from "../../components/common/ThemeTogglerTwo";
 

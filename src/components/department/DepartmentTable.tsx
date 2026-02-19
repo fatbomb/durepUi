@@ -1,4 +1,3 @@
-import React from "react";
 import type { Department } from "../../types/api.types";
 import { useNavigate } from "react-router";
 import { FolderTree, Pencil, Trash2 } from "lucide-react";

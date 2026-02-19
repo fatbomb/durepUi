@@ -24,7 +24,7 @@ interface PercentageStyle {
 type FilterType = 'allTime' | 'today' | 'thisWeek' | 'thisMonth' | 'lastMonth';
 
 const History: React.FC = () => {
-    const navigate = useNavigate();
+    useNavigate();
     const [startDate, setStartDate] = useState<string>('');
     const [endDate, setEndDate] = useState<string>('');
     const [activeFilter, setActiveFilter] = useState<FilterType>('allTime');

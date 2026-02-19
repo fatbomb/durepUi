@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useState, useEffect } from "react";
 import PageMeta from "../../components/common/PageMeta";
 import { useAuth } from "../../context/AuthContext";
 import { useInstitutions } from "../../hooks/useInstitutions";
@@ -12,7 +11,6 @@ import { departmentsApi } from "../../api/departments.api";
 import type { Department } from "../../types/api.types";
 
 export default function AllDepartmentsPage() {
-  const navigate = useNavigate();
   const { isAdmin, isSuperAdmin } = useAuth();
   const { institutions } = useInstitutions();
   

@@ -30,10 +30,6 @@ export default function CreateFacultyWithInstitutionModal({
     inst.name.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
-  const selectedInstitution = institutions.find(
-    (inst) => inst.id === formData.institutionId
-  );
-
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     

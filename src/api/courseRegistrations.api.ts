@@ -9,54 +9,51 @@ import type {
 } from '../types/api.types';
 
 export const courseRegistrationsApi = {
-  getByStudentId: async (studentId: string, termId?: string): Promise<CourseRegistration[]> => {
+  getByStudentId: async (studentId: string, _termId?: string): Promise<CourseRegistration[]> => {
     if (MOCK_CONFIG.USE_MOCK_DATA) {
-      return MockApiClient.getCourseRegistrations(studentId, termId);
+      return MockApiClient.getCourseRegistrations(studentId);
     }
-    const url = termId
-      ? `/students/${studentId}/registrations?term_id=${termId}`
+    const url = _termId
+      ? `/students/${studentId}/registrations?term_id=${_termId}`
       : `/students/${studentId}/registrations`;
-    const response = await apiClient.get(url);
-    return response.data;
+    return apiClient.get<CourseRegistration[]>(url);
   },
 
   getBySectionId: async (sectionId: string): Promise<CourseRegistration[]> => {
     if (MOCK_CONFIG.USE_MOCK_DATA) {
-      return MockApiClient.getCourseRegistrationsBySection(sectionId);
+      return MockApiClient.getCourseRegistrations(undefined, sectionId);
     }
-    const response = await apiClient.get(`/course-sections/${sectionId}/registrations`);
-    return response.data;
+    return apiClient.get<CourseRegistration[]>(`/course-sections/${sectionId}/registrations`);
   },
 
   getById: async (id: string): Promise<CourseRegistration> => {
     if (MOCK_CONFIG.USE_MOCK_DATA) {
-      return MockApiClient.getCourseRegistration(id);
+      const registrations = await MockApiClient.getCourseRegistrations();
+      const registration = registrations.find(r => r.id === id);
+      if (!registration) throw new Error('Registration not found');
+      return registration;
     }
-    const response = await apiClient.get(`/course-registrations/${id}`);
-    return response.data;
+    return apiClient.get<CourseRegistration>(`/course-registrations/${id}`);
   },
 
   register: async (data: CreateCourseRegistrationPayload): Promise<CourseRegistration> => {
     if (MOCK_CONFIG.USE_MOCK_DATA) {
       return MockApiClient.createCourseRegistration(data);
     }
-    const response = await apiClient.post('/course-registrations', data);
-    return response.data;
+    return apiClient.post<CourseRegistration>('/course-registrations', data);
   },
 
   drop: async (id: string): Promise<{ id: string }> => {
     if (MOCK_CONFIG.USE_MOCK_DATA) {
       return MockApiClient.deleteCourseRegistration(id);
     }
-    const response = await apiClient.delete(`/course-registrations/${id}`);
-    return response.data;
+    return apiClient.delete<{ id: string }>(`/course-registrations/${id}`);
   },
 
   update: async (id: string, data: UpdateCourseRegistrationPayload): Promise<CourseRegistration> => {
     if (MOCK_CONFIG.USE_MOCK_DATA) {
       return MockApiClient.updateCourseRegistration(id, data);
     }
-    const response = await apiClient.put(`/course-registrations/${id}`, data);
-    return response.data;
+    return apiClient.put<CourseRegistration>(`/course-registrations/${id}`, data);
   },
 };

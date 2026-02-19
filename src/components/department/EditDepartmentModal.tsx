@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import type { Department, UpdateDepartmentPayload, Faculty } from "../../types/api.types";
+import type { Department, UpdateDepartmentPayload } from "../../types/api.types";
 import { useFaculties } from "../../hooks/useFaculties";
 
 interface EditDepartmentModalProps {

@@ -1,5 +1,5 @@
 // components/users/DeleteUserModal.tsx
-import React, { useState } from "react";
+import { useState } from "react";
 import Modal from "./Modal";
 import type { User } from "../../types/api.types";
 

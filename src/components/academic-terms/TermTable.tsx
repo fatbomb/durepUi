@@ -1,4 +1,3 @@
-import React from "react";
 import type { AcademicTerm } from "../../types/api.types";
 import { Eye, Edit, Trash2, Calendar } from "lucide-react";
 

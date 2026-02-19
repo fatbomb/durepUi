@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import type { Department } from "../../types/api.types";
 
 interface DeleteDepartmentModalProps {

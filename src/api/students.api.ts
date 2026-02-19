@@ -17,39 +17,34 @@ export const studentsApi = {
     const url = departmentId 
       ? `/departments/${departmentId}/students`
       : '/students';
-    const response = await apiClient.get(url, { params });
-    return response.data;
+    return apiClient.get<Student[]>(url, params as Record<string, any>);
   },
 
   getById: async (id: string): Promise<Student> => {
     if (MOCK_CONFIG.USE_MOCK_DATA) {
       return MockApiClient.getStudent(id);
     }
-    const response = await apiClient.get(`/students/${id}`);
-    return response.data;
+    return apiClient.get<Student>(`/students/${id}`);
   },
 
   create: async (data: CreateStudentPayload): Promise<Student> => {
     if (MOCK_CONFIG.USE_MOCK_DATA) {
       return MockApiClient.createStudent(data);
     }
-    const response = await apiClient.post('/students', data);
-    return response.data;
+    return apiClient.post<Student>('/students', data);
   },
 
   update: async (id: string, data: UpdateStudentPayload): Promise<Student> => {
     if (MOCK_CONFIG.USE_MOCK_DATA) {
       return MockApiClient.updateStudent(id, data);
     }
-    const response = await apiClient.put(`/students/${id}`, data);
-    return response.data;
+    return apiClient.put<Student>(`/students/${id}`, data);
   },
 
   delete: async (id: string): Promise<{ id: string; student_id: string }> => {
     if (MOCK_CONFIG.USE_MOCK_DATA) {
       return MockApiClient.deleteStudent(id);
     }
-    const response = await apiClient.delete(`/students/${id}`);
-    return response.data;
+    return apiClient.delete<{ id: string; student_id: string }>(`/students/${id}`);
   },
 };

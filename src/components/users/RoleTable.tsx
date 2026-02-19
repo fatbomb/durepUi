@@ -1,5 +1,4 @@
 // components/users/RoleTable.tsx
-import React from "react";
 import type { UserRole } from "../../types/api.types";
 
 interface RoleTableProps {

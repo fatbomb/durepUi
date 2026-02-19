@@ -1,5 +1,4 @@
 // components/users/AccessDenied.tsx
-import React from "react";
 import PageMeta from "../common/PageMeta";
 
 export default function AccessDenied() {

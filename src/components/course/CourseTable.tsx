@@ -1,4 +1,3 @@
-import React from "react";
 import type { Course } from "../../types/api.types";
 import { BookOpen, Pencil, Trash2 } from "lucide-react";
 

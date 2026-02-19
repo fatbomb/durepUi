@@ -104,8 +104,8 @@ const CreateClass: React.FC = () => {
         return `${minutes}m`;
     };
 
-    function convertToArray(data: any) {
-        const result: any[] = [];
+    function convertToArray(data: Record<string, TimeSlot>) {
+        const result: { day: string; start_time: string; end_time: string }[] = [];
 
         for (const [day, time] of Object.entries(data)) {
             if (time.start !== "" && time.end !== "") {
@@ -151,10 +151,9 @@ const CreateClass: React.FC = () => {
             };
 
             console.log(payload);
-            return false;
 
             const token = localStorage.getItem("access_token");
-            const response = await api.post("/api/create_class", payload, {
+            await api.post("/api/create_class", payload, {
                 headers: { Authorization: `Bearer ${token}` }
             });
 
@@ -336,7 +335,7 @@ const CreateClass: React.FC = () => {
                 {/* Bottom Actions */}
                 <div className="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 p-4 shadow-lg">
                     <div className="max-w-3xl mx-auto grid grid-cols-3 gap-3">
-                        <button type="submit" onClick={handleSubmit}
+                        <button type="submit"
                                 className="py-3 bg-gradient-to-r from-indigo-500 to-purple-600 text-white rounded-xl font-semibold">
                             Create Class
                         </button>

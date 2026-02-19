@@ -167,9 +167,9 @@ const AttendanceSheet: React.FC = () => {
         doc.text(subHeader, pageW / 2, 22, { align: 'center' });
 
         // Attendance Sheet Title
-        doc.setFontSize(12).setFont(undefined, 'bold');
+        doc.setFontSize(12).setFont('helvetica', 'bold');
         doc.text("Attendance Sheet", pageW / 2, 30, { align: 'center' });
-        doc.setFont(undefined, 'normal');
+        doc.setFont('helvetica', 'normal');
 
         // Date and Time
         doc.setFontSize(10);

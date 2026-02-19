@@ -1,11 +1,10 @@
-import React, { useState, useEffect } from "react";
+import { useState } from "react";
 import PageMeta from "../../components/common/PageMeta";
-import { useAuth } from "../../context/AuthContext";
-import { BookOpen, Download, Calendar, CheckCircle, X, Eye } from "lucide-react";
+
+import { BookOpen, Download, Calendar, CheckCircle, X } from "lucide-react";
 
 export default function MyCoursesPage() {
-  const { user } = useAuth();
-  const [loading, setLoading] = useState(false);
+  const [loading] = useState(false);
   const [selectedCourse, setSelectedCourse] = useState<string | null>(null);
 
   // Mock data - will be replaced with actual API calls
@@ -81,7 +80,7 @@ export default function MyCoursesPage() {
       <div className="bg-white dark:bg-white/[0.03] px-4 sm:px-5 xl:px-10 py-5 sm:py-7 xl:py-12 border border-gray-200 dark:border-gray-800 rounded-2xl min-h-screen">
         <div className="mx-auto w-full">
           <div className="mb-6">
-            <h3 className="mb-2 font-semibold text-gray-800 text-xl sm:text-2xl dark:text-white/90">
+            <h3 className="mb-2 font-semibold text-gray-800 dark:text-white/90 text-xl sm:text-2xl">
               My Courses
             </h3>
             <p className="text-gray-600 dark:text-gray-400 text-sm">
@@ -116,10 +115,10 @@ export default function MyCoursesPage() {
                   >
                     {/* Course Header */}
                     <div
-                      className="p-6 cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-800/80 transition-colors"
+                      className="hover:bg-gray-50 dark:hover:bg-gray-800/80 p-6 transition-colors cursor-pointer"
                       onClick={() => setSelectedCourse(isExpanded ? null : course.id)}
                     >
-                      <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4">
+                      <div className="flex sm:flex-row flex-col sm:justify-between sm:items-start gap-4">
                         <div className="flex-1">
                           <div className="flex items-start gap-3">
                             <div className="bg-blue-100 dark:bg-blue-900/30 p-3 rounded-lg">
@@ -135,7 +134,7 @@ export default function MyCoursesPage() {
                                   {course.section}
                                 </span>
                               </div>
-                              <h4 className="font-semibold text-gray-900 dark:text-white mb-1">
+                              <h4 className="mb-1 font-semibold text-gray-900 dark:text-white">
                                 {course.course_name}
                               </h4>
                               <div className="flex flex-wrap items-center gap-2 text-sm">
@@ -152,7 +151,7 @@ export default function MyCoursesPage() {
                         </div>
                         <div className="flex items-center gap-3">
                           <div className="text-right">
-                            <div className="text-gray-500 dark:text-gray-400 text-xs mb-1">Grade</div>
+                            <div className="mb-1 text-gray-500 dark:text-gray-400 text-xs">Grade</div>
                             <div className={`font-bold text-lg ${getGradeColor(course.grade)}`}>
                               {course.grade}
                             </div>
@@ -163,21 +162,21 @@ export default function MyCoursesPage() {
                       {/* Quick Stats */}
                       <div className="gap-4 grid grid-cols-2 sm:grid-cols-4 mt-4">
                         <div className="bg-gray-50 dark:bg-gray-800 p-3 rounded-lg">
-                          <div className="text-gray-500 dark:text-gray-400 text-xs mb-1">Schedule</div>
+                          <div className="mb-1 text-gray-500 dark:text-gray-400 text-xs">Schedule</div>
                           <div className="text-gray-900 dark:text-white text-sm">{course.schedule}</div>
                         </div>
                         <div className="bg-gray-50 dark:bg-gray-800 p-3 rounded-lg">
-                          <div className="text-gray-500 dark:text-gray-400 text-xs mb-1">Room</div>
+                          <div className="mb-1 text-gray-500 dark:text-gray-400 text-xs">Room</div>
                           <div className="text-gray-900 dark:text-white text-sm">{course.room}</div>
                         </div>
                         <div className="bg-gray-50 dark:bg-gray-800 p-3 rounded-lg">
-                          <div className="text-gray-500 dark:text-gray-400 text-xs mb-1">Attendance</div>
+                          <div className="mb-1 text-gray-500 dark:text-gray-400 text-xs">Attendance</div>
                           <div className="text-gray-900 dark:text-white text-sm">
                             {attendancePercentage}%
                           </div>
                         </div>
                         <div className="bg-gray-50 dark:bg-gray-800 p-3 rounded-lg">
-                          <div className="text-gray-500 dark:text-gray-400 text-xs mb-1">Materials</div>
+                          <div className="mb-1 text-gray-500 dark:text-gray-400 text-xs">Materials</div>
                           <div className="text-gray-900 dark:text-white text-sm">
                             {course.materials} files
                           </div>
@@ -187,7 +186,7 @@ export default function MyCoursesPage() {
 
                     {/* Expanded Details */}
                     {isExpanded && (
-                      <div className="border-t border-gray-200 dark:border-gray-700 p-6 bg-gray-50 dark:bg-gray-900/30">
+                      <div className="bg-gray-50 dark:bg-gray-900/30 p-6 border-gray-200 dark:border-gray-700 border-t">
                         <div className="gap-6 grid grid-cols-1 lg:grid-cols-2">
                           {/* Attendance Details */}
                           <div>
@@ -196,28 +195,28 @@ export default function MyCoursesPage() {
                               Attendance Record
                             </h5>
                             <div className="space-y-3">
-                              <div className="flex items-center justify-between">
+                              <div className="flex justify-between items-center">
                                 <span className="text-gray-600 dark:text-gray-400 text-sm">Present</span>
-                                <span className="flex items-center gap-1 text-green-600 dark:text-green-400 font-medium text-sm">
+                                <span className="flex items-center gap-1 font-medium text-green-600 dark:text-green-400 text-sm">
                                   <CheckCircle className="w-4 h-4" />
                                   {course.attendance.present} days
                                 </span>
                               </div>
-                              <div className="flex items-center justify-between">
+                              <div className="flex justify-between items-center">
                                 <span className="text-gray-600 dark:text-gray-400 text-sm">Absent</span>
-                                <span className="flex items-center gap-1 text-red-600 dark:text-red-400 font-medium text-sm">
+                                <span className="flex items-center gap-1 font-medium text-red-600 dark:text-red-400 text-sm">
                                   <X className="w-4 h-4" />
                                   {course.attendance.absent} days
                                 </span>
                               </div>
-                              <div className="pt-3 border-t border-gray-200 dark:border-gray-700">
+                              <div className="pt-3 border-gray-200 dark:border-gray-700 border-t">
                                 <div className="flex justify-between mb-2 text-sm">
                                   <span className="text-gray-600 dark:text-gray-400">Total</span>
                                   <span className="font-medium text-gray-900 dark:text-white">
                                     {course.attendance.total} sessions
                                   </span>
                                 </div>
-                                <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
+                                <div className="bg-gray-200 dark:bg-gray-700 rounded-full w-full h-2">
                                   <div
                                     className={`h-2 rounded-full ${
                                       attendancePercentage >= 80
@@ -244,7 +243,7 @@ export default function MyCoursesPage() {
                                 {materialsData[course.id as keyof typeof materialsData].map((material) => (
                                   <div
                                     key={material.id}
-                                    className="flex items-center justify-between bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 p-3 rounded-lg hover:border-blue-500 dark:hover:border-blue-500 transition-colors"
+                                    className="flex justify-between items-center bg-white dark:bg-gray-800 p-3 border border-gray-200 hover:border-blue-500 dark:border-gray-700 dark:hover:border-blue-500 rounded-lg transition-colors"
                                   >
                                     <div className="flex-1">
                                       <div className="font-medium text-gray-900 dark:text-white text-sm">
@@ -254,14 +253,14 @@ export default function MyCoursesPage() {
                                         {material.type} • Uploaded {material.uploadedDate}
                                       </div>
                                     </div>
-                                    <button className="text-blue-600 hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300 p-2">
+                                    <button className="p-2 text-blue-600 hover:text-blue-700 dark:hover:text-blue-300 dark:text-blue-400">
                                       <Download className="w-4 h-4" />
                                     </button>
                                   </div>
                                 ))}
                               </div>
                             ) : (
-                              <div className="text-center py-6 text-gray-500 dark:text-gray-400 text-sm">
+                              <div className="py-6 text-gray-500 dark:text-gray-400 text-sm text-center">
                                 No materials available yet
                               </div>
                             )}

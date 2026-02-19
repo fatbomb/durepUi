@@ -1,11 +1,9 @@
-import React, { useState, useEffect } from "react";
+import { useState } from "react";
 import PageMeta from "../../components/common/PageMeta";
-import { useAuth } from "../../context/AuthContext";
 import { GraduationCap, Calendar, TrendingUp, CheckCircle } from "lucide-react";
 
 export default function MyProgramsPage() {
-  const { user } = useAuth();
-  const [loading, setLoading] = useState(false);
+  const [loading] = useState(false);
 
   // Mock data - will be replaced with actual API calls
   const programsData = [
@@ -54,7 +52,7 @@ export default function MyProgramsPage() {
       <div className="bg-white dark:bg-white/[0.03] px-4 sm:px-5 xl:px-10 py-5 sm:py-7 xl:py-12 border border-gray-200 dark:border-gray-800 rounded-2xl min-h-screen">
         <div className="mx-auto w-full">
           <div className="mb-6">
-            <h3 className="mb-2 font-semibold text-gray-800 text-xl sm:text-2xl dark:text-white/90">
+            <h3 className="mb-2 font-semibold text-gray-800 dark:text-white/90 text-xl sm:text-2xl">
               My Programs
             </h3>
             <p className="text-gray-600 dark:text-gray-400 text-sm">
@@ -84,15 +82,15 @@ export default function MyProgramsPage() {
                     className="bg-white dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700 rounded-lg overflow-hidden"
                   >
                     {/* Header */}
-                    <div className="bg-gradient-to-r from-blue-50 to-purple-50 dark:from-blue-900/20 dark:to-purple-900/20 p-6 border-b border-gray-200 dark:border-gray-700">
-                      <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4">
+                    <div className="bg-gradient-to-r from-blue-50 dark:from-blue-900/20 to-purple-50 dark:to-purple-900/20 p-6 border-gray-200 dark:border-gray-700 border-b">
+                      <div className="flex sm:flex-row flex-col sm:justify-between sm:items-start gap-4">
                         <div className="flex-1">
                           <div className="flex items-start gap-3">
                             <div className="bg-blue-100 dark:bg-blue-900/30 p-3 rounded-lg">
                               <GraduationCap className="w-6 h-6 text-blue-600 dark:text-blue-400" />
                             </div>
                             <div>
-                              <h4 className="font-semibold text-gray-900 dark:text-white text-lg mb-1">
+                              <h4 className="mb-1 font-semibold text-gray-900 dark:text-white text-lg">
                                 {program.program_name}
                               </h4>
                               <div className="flex flex-wrap items-center gap-2 text-sm">
@@ -113,7 +111,7 @@ export default function MyProgramsPage() {
                     </div>
 
                     {/* Content */}
-                    <div className="p-6 space-y-6">
+                    <div className="space-y-6 p-6">
                       {/* Progress Bar */}
                       <div>
                         <div className="flex justify-between items-center mb-2">
@@ -124,9 +122,9 @@ export default function MyProgramsPage() {
                             {program.completed_credits} / {program.required_credits} credits
                           </span>
                         </div>
-                        <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-3 mb-1">
+                        <div className="bg-gray-200 dark:bg-gray-700 mb-1 rounded-full w-full h-3">
                           <div
-                            className="bg-blue-600 dark:bg-blue-500 h-3 rounded-full transition-all"
+                            className="bg-blue-600 dark:bg-blue-500 rounded-full h-3 transition-all"
                             style={{ width: `${progress}%` }}
                           ></div>
                         </div>
@@ -180,7 +178,7 @@ export default function MyProgramsPage() {
                           <div className="flex items-start gap-3">
                             <div className={`mt-1 rounded-full w-2 h-2 ${progress >= 25 ? 'bg-green-500' : 'bg-gray-300 dark:bg-gray-600'}`}></div>
                             <div className="flex-1">
-                              <div className="flex items-center justify-between">
+                              <div className="flex justify-between items-center">
                                 <span className="text-gray-900 dark:text-white text-sm">First Year Completed</span>
                                 {progress >= 25 && <CheckCircle className="w-4 h-4 text-green-500" />}
                               </div>
@@ -191,7 +189,7 @@ export default function MyProgramsPage() {
                           <div className="flex items-start gap-3">
                             <div className={`mt-1 rounded-full w-2 h-2 ${progress >= 50 ? 'bg-green-500' : 'bg-gray-300 dark:bg-gray-600'}`}></div>
                             <div className="flex-1">
-                              <div className="flex items-center justify-between">
+                              <div className="flex justify-between items-center">
                                 <span className="text-gray-900 dark:text-white text-sm">Second Year Completed</span>
                                 {progress >= 50 && <CheckCircle className="w-4 h-4 text-green-500" />}
                               </div>
@@ -202,7 +200,7 @@ export default function MyProgramsPage() {
                           <div className="flex items-start gap-3">
                             <div className={`mt-1 rounded-full w-2 h-2 ${progress >= 75 ? 'bg-green-500' : 'bg-gray-300 dark:bg-gray-600'}`}></div>
                             <div className="flex-1">
-                              <div className="flex items-center justify-between">
+                              <div className="flex justify-between items-center">
                                 <span className="text-gray-900 dark:text-white text-sm">Third Year Completed</span>
                                 {progress >= 75 && <CheckCircle className="w-4 h-4 text-green-500" />}
                               </div>
@@ -213,7 +211,7 @@ export default function MyProgramsPage() {
                           <div className="flex items-start gap-3">
                             <div className={`mt-1 rounded-full w-2 h-2 ${progress >= 100 ? 'bg-green-500' : 'bg-gray-300 dark:bg-gray-600'}`}></div>
                             <div className="flex-1">
-                              <div className="flex items-center justify-between">
+                              <div className="flex justify-between items-center">
                                 <span className="text-gray-900 dark:text-white text-sm">Graduation</span>
                                 {progress >= 100 && <CheckCircle className="w-4 h-4 text-green-500" />}
                               </div>

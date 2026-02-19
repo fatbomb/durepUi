@@ -1,4 +1,3 @@
-import React from "react";
 import type { Program } from "../../types/api.types";
 import { useNavigate } from "react-router";
 import { BookOpen, Pencil, Trash2 } from "lucide-react";

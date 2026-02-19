@@ -1,7 +1,7 @@
 // ============================================
 // DeleteCourseModal.tsx
 // ============================================
-import React, { useState } from "react";
+import { useState } from "react";
 import type { Course } from "../../types/api.types";
 
 interface DeleteCourseModalProps {

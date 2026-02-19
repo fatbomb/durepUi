@@ -1,4 +1,4 @@
-import { ChevronLeftIcon, EyeCloseIcon, EyeIcon } from "../../icons";
+import { EyeCloseIcon, EyeIcon } from "../../icons";
 import { Link, useNavigate } from "react-router";
 
 import Button from "../ui/button/Button";

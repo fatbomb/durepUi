@@ -1,8 +1,15 @@
 import {Table,TableCell, TableHeader, TableRow} from "../ui/table";
 import { useEffect, useState } from "react";
 
+interface CourseData {
+    course_name: string;
+    name_of_final_exam: string;
+    year_of_final_exam: string;
+    course_teacher_name: string;
+}
+
 export default function MonthlySalesChart() {
-    const [courses, setCourses] = useState([]);
+    const [courses, setCourses] = useState<CourseData[]>([]);
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
